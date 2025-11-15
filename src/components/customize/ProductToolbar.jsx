@@ -83,7 +83,7 @@ const ProductToolbar = ({
               </svg>
             </button>
           </div>
-          <div className="max-h-[60vh] md:max-h-[600px] overflow-y-auto p-6" data-scroll-ignore>
+          <div className="max-h-[50vh] md:max-h-[600px] overflow-y-auto p-6" data-scroll-ignore>
             {/* Layout Section */}
             <div className="mb-6">
               <p className="text-sm font-medium mb-3">Layout</p>
