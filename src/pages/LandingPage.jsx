@@ -1,3 +1,5 @@
+'use client';
+
 import FloatingButton from '../components/landing/FloatingButton';
 import CookieConsent from '../components/landing/CookieConsent';
 import Header from '../components/landing/Header';
