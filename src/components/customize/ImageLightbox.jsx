@@ -14,7 +14,7 @@ const ImageLightbox = ({ images, productName, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center">
       {/* Header */}
       <div className="fixed top-10 left-10 z-10">
         <p className="text-lg">{productName}</p>

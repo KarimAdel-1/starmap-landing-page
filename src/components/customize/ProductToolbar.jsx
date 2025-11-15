@@ -70,7 +70,7 @@ const ProductToolbar = ({
         {/* Customize Dropdown - Positioned relative to parent */}
         <div
           ref={dropdownRef}
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 bg-gray-50 rounded-2xl overflow-hidden w-[400px] md:w-[420px] h-0 opacity-0"
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 bg-gray-50 rounded-2xl overflow-hidden w-[calc(100vw-2.5rem)] max-w-[400px] md:w-[420px] h-0 opacity-0"
         >
           <div className="flex justify-between items-center p-6 border-b">
             <p className="text-base">Customize</p>
@@ -83,7 +83,7 @@ const ProductToolbar = ({
               </svg>
             </button>
           </div>
-          <div className="max-h-[600px] overflow-y-auto p-6" data-scroll-ignore>
+          <div className="max-h-[60vh] md:max-h-[600px] overflow-y-auto p-6" data-scroll-ignore>
             {/* Layout Section */}
             <div className="mb-6">
               <p className="text-sm font-medium mb-3">Layout</p>
