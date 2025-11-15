@@ -58,10 +58,10 @@ const ProductHero = ({
   };
   return (
     <section className="relative w-full h-svh md:h-screen bg-tan flex justify-center items-center overflow-hidden bg-[#F4F2F0]">
-      <div className="relative mb-20 md:mb-0">
+      <div className="relative mb-20 md:mb-0 w-full max-w-[90vw] md:max-w-none">
         <div
           ref={posterRef}
-          className={`h-[calc(100svh-20rem)] w-auto ${layoutAspects[selectedLayout]} max-h-[calc(100svh-20rem)] max-w-[calc(100vw-2.5rem)] md:max-h-[80vh] mx-auto flex flex-col items-center justify-between p-8 md:p-12 relative`}
+          className={`h-[calc(100svh-20rem)] w-auto ${layoutAspects[selectedLayout]} max-h-[calc(100svh-20rem)] max-w-[90vw] md:max-h-[80vh] md:max-w-[60vw] lg:max-w-[50vw] mx-auto flex flex-col items-center justify-between p-6 sm:p-8 md:p-12 relative`}
           style={{
             backgroundColor: posterBg,
             ...(selectedFrame !== 'No Frame'
@@ -75,13 +75,13 @@ const ProductHero = ({
           }}
         >
           {showBorder && <div
-            className="absolute inset-6 md:inset-8 border-2 pointer-events-none"
+            className="absolute inset-4 sm:inset-6 md:inset-8 border-2 pointer-events-none"
             style={{
               borderColor: selectedColor === 'White' ? '#000000' : '#ffffff',
             }}
           ></div>}
-          <div className="flex-1 flex flex-col items-center justify-between w-full pt-6">
-            <div className="w-[300px] h-[300px] rounded-full overflow-hidden flex items-center justify-center">
+          <div className="flex-1 flex flex-col items-center justify-between w-full pt-4 sm:pt-6">
+            <div className="w-full max-w-[250px] sm:max-w-[300px] aspect-square rounded-full overflow-hidden flex items-center justify-center">
               <CelestialMap
                 mapBackground={selectedPoster}
                 displayOptions={displayOptions}

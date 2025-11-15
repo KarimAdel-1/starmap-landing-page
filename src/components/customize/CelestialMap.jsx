@@ -159,12 +159,19 @@ export default function CelestialMap({
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
-    const resizeObserver = new ResizeObserver((entries) => {
-      const size = entries[0].contentRect.width;
-      setContainerSize(size);
-    });
+    const updateSize = () => {
+      if (mapContainerRef.current) {
+        const size = Math.min(
+          mapContainerRef.current.offsetWidth,
+          mapContainerRef.current.offsetHeight
+        );
+        setContainerSize(size);
+      }
+    };
 
+    const resizeObserver = new ResizeObserver(updateSize);
     resizeObserver.observe(mapContainerRef.current);
+    updateSize();
 
     return () => resizeObserver.disconnect();
   }, []);
@@ -181,6 +188,14 @@ export default function CelestialMap({
         Celestial.skyview({ date: DATE });
         celestialRef.current = Celestial;
         setIsInitialized(true);
+
+        // Force canvas to match container
+        const canvas = document.querySelector('#map canvas');
+        if (canvas && mapContainerRef.current) {
+          canvas.width = mapContainerRef.current.offsetWidth;
+          canvas.height = mapContainerRef.current.offsetHeight;
+          Celestial.resize({ width: canvas.width });
+        }
       })
       .catch((err) => console.error('Error loading celestial:', err));
   }, [containerSize]);
@@ -192,6 +207,14 @@ export default function CelestialMap({
     const dateObj = DATE;
     celestialRef.current.apply(config);
     celestialRef.current.skyview({ date: dateObj });
+
+    // Force canvas to match container after updates
+    const canvas = document.querySelector('#map canvas');
+    if (canvas && mapContainerRef.current) {
+      canvas.width = mapContainerRef.current.offsetWidth;
+      canvas.height = mapContainerRef.current.offsetHeight;
+      celestialRef.current.resize({ width: canvas.width });
+    }
   }, [
     mapBackground,
     displayOptions,
@@ -217,14 +240,18 @@ export default function CelestialMap({
         #map canvas,
         #map svg {
           width: 100% !important;
-          height: auto !important;
+          height: 100% !important;
+          max-width: 100%;
+          max-height: 100%;
           display: block;
+          object-fit: contain;
         }
       `}</style>
       <div
         ref={mapContainerRef}
         id="map"
         className="w-full h-full overflow-hidden"
+        style={{ minWidth: 0, minHeight: 0 }}
       />
     </>
   );
